@@ -1,0 +1,17 @@
+{% extends 'general.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}{% endblock %}
+{% block main %}
+<div class="medium-12 large-8 float-center">
+    <form class="login" action="/login" method="POST">
+        <h2>User Login</h2>
+        <hr>
+        <label>Username</label>
+        <input type="text" placeholder="john.smith" name="user_name" required/>
+        <label>Password</label>
+        <input type="password" name="password" required/>
+        <input type="submit" class="button expanded large" name="login" value="Login">
+    </form>
+</div>
+{% endblock %}
+{% block script %}{% endblock %}

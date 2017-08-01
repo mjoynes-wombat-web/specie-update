@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Philosopher:400,700|Roboto:300,400,500" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/foundation.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename='css/anicollection.css') }}" rel="stylesheet" type="text/css">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+<header class="row full-width">
+    <div class="large-12">
+        <h1>Specie</h1>
+        <a href="/">
+            <img src="{{ url_for('static', filename='img/Specie-Logo.svg') }}" alt="Specie Logo"/></a>
+        <h3>Take the Stress Out of Budgeting.</h3>
+    </div>
+</header>
+<nav class="row full-width">
+    <div class="large-12">
+        <div class="title-bar" data-responsive-toggle="example-animated-menu" data-hide-for="medium">
+            <button class="menu-icon" type="button" data-toggle></button>
+        </div>
+
+        <div class="top-bar" id="example-animated-menu" data-animate="hinge-in-from-top hinge-out-from-top">
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li class="float-left"><a href="/">Home</a></li>
+                    {% if session['logged_in'] %}
+                    <li class="float-left"><a href="/add-bill">Add Bill</a></li>
+                    <li class="float-left"><a href="/add-deduction">Add Deduction</a></li>
+                    <li class="float-right"><a href="/logout">Logout</a></li>
+                    {% else %}
+                    <li class="float-right"><a href="/login">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<main class="row">
+    {% block main %}
+    {% endblock %}
+</main>
+
+
+<script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/what-input.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/foundation.js') }}"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vendor/AniJs/anijs-min.js') }}"></script>
+<script>
+    $(function () {
+        $('input[type=number]').on('mousewheel', function (e) {
+                e.preventDefault();
+            }
+        );
+        $('input[type=date]').on('mousewheel', function (e) {
+                e.preventDefault();
+            }
+        );
+    });
+</script>
+{% block script %}
+{% endblock %}
+</body>
+</html>

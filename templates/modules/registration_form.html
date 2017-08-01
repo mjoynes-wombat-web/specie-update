@@ -1,0 +1,102 @@
+<div class="medium-12 large-8 columns">
+    <form class="registration" method="post" action="/register">
+        <h2>Register to Simplify Your Budgeting</h2>
+        <hr>
+        <div class="row">
+            {% if session['form'] and request.args.get('error') == 'duplicate' %}
+            <div class="small-12 medium-6 columns">
+                <label>First Name</label>
+                <input type="text" value="{{ session['form']['first_name'] }}" name="first_name" placeholder="John"
+                       required/>
+            </div>
+            <div class="small-12 medium-6 columns">
+                <label>Last Name</label>
+                <input type="text" value="{{ session['form']['last_name']}}" name="last_name" placeholder="Smith"
+                       required/>
+            </div>
+            <div class="large-12 columns">
+                <label>Email</label>
+                <input type="email" value="{{ session['form']['email']}}" name="email"
+                       placeholder="john.smith@gmail.com"
+                       required/>
+            </div>
+            <div class="large-12 columns" id="user_name">
+                <label>Username</label>
+                <div class="callout small alert" data-closable>
+                    <p>The username {{ session ['form']['user_name'] }} is already being used. Please choose
+                        another.</p>
+                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <input type="text" placeholder="john.smith" name="user_name" required/>
+            </div>
+            {% elif request.args.get('error') == 'duplicate' %}
+            <div class="callout small alert" data-closable>
+                <p>Something went wrong. Please try again.</p>
+                <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="small-12 medium-6 columns">
+                <label>First Name</label>
+                <input type="text" placeholder="John" name="first_name" required/>
+            </div>
+            <div class="small-12 medium-6 columns">
+                <label>Last Name</label>
+                <input type="text" placeholder="Smith" name="last_name" required/>
+            </div>
+            <div class="large-12 columns">
+                <label>Email</label>
+                <input type="email" placeholder="john.smith@gmail.com" name="email" required/>
+            </div>
+            <div class="large-12 columns">
+                <label>Username</label>
+                <input type="text" placeholder="john.smith" name="user_name" required/>
+            </div>
+            {% else %}
+            <div class="small-12 medium-6 columns">
+                <label>First Name</label>
+                <input type="text" placeholder="John" name="first_name" required/>
+            </div>
+            <div class="small-12 medium-6 columns">
+                <label>Last Name</label>
+                <input type="text" placeholder="Smith" name="last_name" required/>
+            </div>
+            <div class="large-12 columns">
+                <label>Email</label>
+                <input type="email" placeholder="john.smith@gmail.com" name="email" required/>
+            </div>
+            <div class="large-12 columns">
+                <label>Username</label>
+                <input type="text" placeholder="john.smith" name="user_name" required/>
+            </div>
+            {% endif %}
+            <div class="large-12 columns">
+                <label>Password</label>
+                <input type="password" name="password" required/>
+            </div>
+            <div class="large-12 columns">
+                <label>Confirm Password</label>
+                <input type="password" name="password_confirm" onkeyup="comparePass(this)" required/>
+            </div>
+            <div class="large-12 columns">
+                <input type="submit" class="button expanded large" name="register" value="Register" disabled>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function comparePass(confirmPass) {
+
+        var password = document.getElementsByName('password')[0].value;
+        var confirmPassword = confirmPass.value;
+        var submit = document.getElementsByName('register')[0];
+
+        if (password === confirmPassword) {
+            submit.disabled = false;
+        } else {
+            submit.disabled = true;
+        }
+    }
+</script>

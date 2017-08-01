@@ -1,0 +1,36 @@
+{% extends 'general.html' %}
+{% block title %}{{ title }} {% endblock %}
+{% block head %}{% endblock %}
+{% block main %}
+<div class="row calendar">
+    <div class="large-12 columns">
+        <h2>My Budget Calendar</h2>
+    </div>
+    {% for day in date_range %}
+        {% for d in dates %}
+            {% if d == day['date'] %}
+            <div class="large-12 columns">
+            <h4>{{ d.strftime("%A, %B %d, %Y") }}</h4>
+            {% for paycheck in paychecks %}
+                {% if d == paycheck['pay_date'] %}
+                    <p>Payday - ${{ paycheck['net_pay'] }}</p>
+                {% endif %}
+            {% endfor %}
+            {% for bill in bills %}
+                    {% if d == bill['bill_pay_date'] %}
+                        <p>Pay Bill - {{  bill['bill_due_date'].strftime("%B") }} {{ bill['bill_name'] }} - ${{ bill['amount'] }}</p>
+                    {% endif %}
+                    {% if d == bill['bill_due_date'] %}
+                        <p>Bill Due - {{  bill['bill_due_date'].strftime("%B") }} {{ bill['bill_name'] }} - ${{ bill['amount'] }} - Paid on {{ bill['bill_pay_date'].strftime("%m/%d/%Y") }}</p>
+                    {% endif %}
+                    {% if d == bill['bill_billing_date'] %}
+                            <p>Bill Available - {{  bill['bill_due_date'].strftime("%B") }} {{ bill['bill_name'] }} - ${{ bill['amount'] }} - Pay on {{ bill['bill_pay_date'].strftime("%m/%d/%Y") }}</p>
+                    {% endif %}
+            {% endfor %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+{% endblock %}
+{% block script %}{% endblock %}

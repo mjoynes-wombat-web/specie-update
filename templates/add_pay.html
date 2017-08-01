@@ -1,0 +1,159 @@
+{% extends 'general.html' %}
+{% block title %}Add Pay - Specie{% endblock %}
+{% block head %}{% endblock %}
+{% block main %}
+<div class="medium-12 large-12 columns">
+    <form class="add-pay" method="post" action="/add-pay">
+        <h2>Please Add Your Pay</h2>
+        <hr>
+        <div class="row">
+            <div class="small-12 medium-10 large-8 columns">
+                <label>How often do you get paid?</label>
+                <select name="pay_period" required onchange="payPeriodSelected(this);">
+                    <option value="" selected>Please select one.</option>
+                    <!--<option value="1">Weekly</option>-->
+                    <!--<option value="2">Bi-Weekly</option>-->
+                    <option value="3">Semi-Monthly</option>
+                    <!--<option value="4">Monthly</option>-->
+                </select>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>How many days after the pay period do you receive your check?</label>
+                <input type="number" placeholder="Please enter a number." name="pay_delay" min="0" required/>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>When was your last paycheck?</label>
+                <input type="date" placeholder="Please enter a date." name="last_paycheck" required/>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>What will your filing status be this year?</label>
+                <select name="filing_status" required>
+                    <option value="" selected>Please select one.</option>
+                    <option value="1">Single</option>
+                    <option value="2">Married - Filing Jointly</option>
+                    <option value="3">Married - Filing Separately</option>
+                    <option value="4">Head of Household</option>
+                </select>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>How many Federal Allowances do you take?</label>
+                <input type="number" placeholder="Please enter a number." name="federal_allowances" required min="0"/>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>Are your salary or paid hourly?</label>
+                <select name="pay_type" required onchange="payTypeSelected(this);">
+                    <option value="" selected>Please select one.</option>
+                    <option value="2">Salary</option>
+                    <option value="1">Hourly</option>
+                </select>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>What is your hourly wage?</label>
+                <input type="number" placeholder="Please enter a number." name="hourly_rate" step="0.01" min="0"/>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>What is your yearly salary?</label>
+                <input type="number" placeholder="Please enter a number." name="salary" step="0.01" min="0"/>
+            </div>
+            <fieldset style="display:none;" class="large-12 columns">
+                <p>Please select the days and enter your hours.</p>
+                <div class="row small-up-1 medium-up-4 large-up-7 work-hours columns">
+                {% for day in days_of_week %}
+                    <div class="column column-block">
+                    <label class="button secondary large-12 columns">{{ day['day'] }}
+                        <input type="checkbox" onchange="toggleDay(this);" style="display:none;" name="{{ day['day'] }}" value="{{ day['day_id'] }}">
+                        <input style="display: none;" type="number" name="hours_{{ day['day_id'] }}" step="0.01" min="1" placeholder="Hours">
+                    </label>
+                    </div>
+                {% endfor %}
+                </div>
+            </fieldset>
+            <div style="display:none;" class="large-12 columns">
+                <input type="submit" class="button expanded large" name="add_pay" value="Add Pay">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    var payPeriodSelected = function (element){
+        var value = element.selectedOptions[0].value;
+
+        var blocksToShow = [];
+        blocksToShow.push(
+            document.getElementsByName('pay_delay')[0].parentNode,
+            document.getElementsByName('last_paycheck')[0].parentNode,
+            document.getElementsByName('filing_status')[0].parentNode,
+            document.getElementsByName('federal_allowances')[0].parentNode,
+            document.getElementsByName('pay_type')[0].parentNode
+        );
+
+        for (block in blocksToShow){
+            blocksToShow[block].classList.add('fadeIn', 'animated');
+            blocksToShow[block].style.display = 'block';
+        }
+    };
+
+    var payTypeSelected = function (element) {
+        var value = element.selectedOptions[0].value;
+
+        var hourlyRateField = document.getElementsByName('hourly_rate')[0];
+        var hourlyRateBlock = hourlyRateField.parentNode;
+
+        var salaryField = document.getElementsByName('salary')[0];
+        var salaryBlock = salaryField.parentNode;
+
+        if (value == 1) {
+            salaryBlock.style.display = 'none';
+            salaryField.required = false;
+
+            hourlyRateBlock.style.display = 'block';
+            hourlyRateBlock.classList.add('fadeIn', 'animated');
+
+            hourlyRateField.required = true;
+
+            var daysOfWeekBlock = document.getElementsByName('Sunday')[0].parentNode.parentNode.parentNode.parentNode;
+
+            daysOfWeekBlock.classList.add('fadeIn', 'animated');
+
+            daysOfWeekBlock.style.display = 'block';
+        } else if (value == 2){
+            hourlyRateBlock.style.display = 'none';
+            hourlyRateField.required = false;
+
+            salaryBlock.style.display = 'block';
+            salaryBlock.classList.add('fadeIn', 'animated');
+
+            salaryField.required = true;
+        }
+
+        var addPayButton = document.getElementsByName('add_pay')[0];
+        var addPayButtonBlock = addPayButton.parentNode;
+
+        addPayButtonBlock.style.display = 'block';
+        addPayButtonBlock.classList.add('fadeIn', 'animated');
+        
+        
+    };
+
+    var toggleDay = function(day) {
+        dayId = day.value;
+        dayLabel = day.parentNode;
+        dayLabel.classList.toggle('selected');
+        dayHours = day.nextSibling.nextSibling;
+
+
+        if (dayHours.style.display == 'none'){
+            dayHours.classList.add('fadeIn', 'animated');
+            dayHours.style.display = 'block';
+            dayHours.required = true;
+        } else {
+            dayHours.style.display = 'none';
+            dayHours.childNodes[1].value = null;
+            dayHours.required=false;
+        }
+    }
+
+</script>
+{% endblock %}

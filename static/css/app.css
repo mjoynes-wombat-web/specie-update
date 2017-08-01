@@ -1,0 +1,164 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-image: url("../img/grey_paper.jpg"); }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Philosopher", sans-serif; }
+
+h2 {
+  color: #609d49;
+  font-size: 1.4rem; }
+
+@media print, screen and (min-width: 40em) {
+  h2 {
+    font-size: 2.5rem; }
+
+  p, label {
+    font-size: 1rem; }
+
+  label {
+    margin: .25rem 0; } }
+hr {
+  margin: .5rem auto 1.25rem auto; }
+
+.full-width {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial; }
+  .full-width > * {
+    max-width: 75rem;
+    margin: 0 auto; }
+
+input[type="number"] {
+  -webkit-appearance: none; }
+
+header {
+  background: url("../img/green_paper.jpg");
+  text-align: center; }
+  header h1 {
+    margin: 0 auto;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 0; }
+  header img {
+    width: 60%;
+    min-width: 10rem;
+    min-height: 4.62rem;
+    max-width: 16rem;
+    max-height: 7.4rem; }
+  header h3 {
+    font-size: 1.3rem; }
+  @media print, screen and (min-width: 40em) {
+    header h3 {
+      font-size: 1.7rem; } }
+
+nav {
+  background-color: #233e3c;
+  border-top: 0.1rem solid #fff;
+  border-bottom: 0.1rem solid #fff; }
+  nav .title-bar {
+    background-color: #365e5c;
+    padding: .8rem;
+    border-top: 0.1rem solid #fff;
+    border-bottom: 0.1rem solid #fff; }
+    nav .title-bar .menu-icon {
+      width: 1.75rem;
+      height: 1.45rem;
+      margin: 0; }
+      nav .title-bar .menu-icon::after {
+        height: 0.2rem;
+        background: #fff;
+        box-shadow: 0 0.6rem 0 #fff, 0 1.2rem 0 #fff; }
+  nav .top-bar {
+    background-color: #233e3c; }
+    nav .top-bar ul {
+      background-color: #233e3c; }
+      nav .top-bar ul a {
+        color: #fff; }
+        nav .top-bar ul a:hover {
+          color: #4a9d88; }
+  @media print, screen and (min-width: 40em) {
+    nav .top-bar .top-bar-left, nav .top-bar .top-bar-right {
+      width: 100%; } }
+
+main {
+  padding: 1.75rem 1rem 1.5rem 1rem; }
+  main h2 {
+    font-weight: 700; }
+  main .large-4 h5 {
+    padding-left: 0; }
+  main h5 {
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 1rem;
+    padding: 0 1rem .5rem 1rem; }
+  main .registration {
+    background: url("../img/green_paper.jpg");
+    box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    border-radius: .4rem; }
+    main .registration input[type="email"] {
+      max-width: 30rem; }
+    main .registration input[name='user_name'] {
+      max-width: 26rem; }
+    main .registration input[type="password"] {
+      max-width: 32rem; }
+  main .login {
+    padding: 0 .5rem; }
+
+.button {
+  background-color: #3a9d4c; }
+  .button:hover, .button:active, .button:focus {
+    background-color: #2c783a; }
+  .button.secondary {
+    background-color: #4a9d88; }
+    .button.secondary:hover, .button.secondary:active, .button.secondary:focus {
+      background-color: #3a7a6a; }
+    .button.secondary.selected {
+      background-color: #365e5c; }
+      .button.secondary.selected:hover, .button.secondary.selected:active, .button.secondary.selected:focus {
+        background-color: #233e3c; }
+
+input:disabled.button {
+  background-color: #4a9d88;
+  opacity: .5; }
+  input:disabled.button:hover, input:disabled.button:active, input:disabled.button:focus {
+    background-color: #3a7a6a; }
+
+.work-hours .button input[type='number'] {
+  margin: 1rem 0 0 0;
+  font-size: .9rem; }
+
+.add-pay select[name='pay_period'] {
+  max-width: 18rem; }
+.add-pay input[type="number"] {
+  max-width: 14rem; }
+.add-pay input[type="date"] {
+  max-width: 12rem; }
+.add-pay select[name='filing_status'] {
+  max-width: 18rem; }
+.add-pay select[name='pay_type'] {
+  max-width: 12rem; }
+
+.calendar > div h4 {
+  color: #365e5c; }
+.calendar > div p:nth-of-type(odd) {
+  background-color: rgba(54, 94, 92, 0.1); }
+.calendar > div *:last-child {
+  margin-bottom: 1rem; }
+.calendar h4 {
+  margin: 0;
+  padding: .5rem .3rem;
+  border-bottom: 1px solid rgba(35, 62, 60, 0.4);
+  font-weight: 700; }
+.calendar p {
+  margin: 0;
+  padding: 0.5rem .75rem; }
+@media print, screen and (min-width: 40em) {
+  .calendar h4 {
+    font-size: 1.4rem; }
+  .calendar p {
+    font-size: 1.2rem; } }
+
+/*# sourceMappingURL=app.css.map */

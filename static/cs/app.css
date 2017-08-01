@@ -1,0 +1,51 @@
+body {
+  font-family: "Roboto", sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Philosopher", sans-serif; }
+
+hr {
+  margin: .5rem auto 1.25rem auto; }
+
+header {
+  background: url("../img/green_paper.png");
+  text-align: center; }
+  header h1 {
+    margin: 0 auto;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 0; }
+  header img {
+    width: 60%;
+    min-width: 10rem;
+    max-width: 18rem; }
+  header h4 {
+    font-size: 1.2rem;
+    text-align: center; }
+
+main {
+  margin: 1rem 0; }
+  main h2 {
+    font-weight: 700; }
+  main h5 {
+    font-family: "Roboto", sans-serif; }
+
+.button {
+  background-color: #3a9d4c; }
+  .button:hover, .button:active, .button:focus {
+    background-color: #2c783a; }
+  .button.secondary {
+    background-color: #4a9d88; }
+    .button.secondary:hover, .button.secondary:active, .button.secondary:focus {
+      background-color: #3a7a6a; }
+    .button.secondary.selected {
+      background-color: #365e5c; }
+      .button.secondary.selected:hover, .button.secondary.selected:active, .button.secondary.selected:focus {
+        background-color: #233e3c; }
+
+.work-hours .button input[type='number'] {
+  margin: 1rem 0 0 0;
+  font-size: .9rem; }
+
+/*# sourceMappingURL=app.css.map */

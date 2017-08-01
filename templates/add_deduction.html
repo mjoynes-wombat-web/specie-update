@@ -1,0 +1,89 @@
+{% extends 'general.html' %}
+{% block title %}Add Pay - Specie{% endblock %}
+{% block head %}{% endblock %}
+{% block main %}
+<div class="medium-12 large-12 columns">
+    <form class="add-bill" method="post" action="/add-deduction">
+        <h2>Please Add Your Deduction</h2>
+        <hr>
+        <div class="row">
+            <div class="small-12 medium-10 large-8 columns">
+                <label>What is your deduction name?</label>
+                <input type="text" placeholder="Please enter the deduction name." name="deduction_name" required/>
+            </div>
+            <div class="small-12 medium-10 large-8 columns">
+                <label>What type of deduction is it?</label>
+                <select name="deduction_type" required onchange="deductionTypeSelected(this);">
+                    <option value="" selected>Please select one.</option>
+                    <option value="1">Hourly Rate</option>
+                    <option value="2">Fixed Amount</option>
+                    <option value="3">Percentage</option>
+                </select>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>Please enter the percentage.</label>
+                <input type="number" placeholder="Please enter a number." name="deduction_percentage" min="1"/>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>Please enter the rate.</label>
+                <input type="number" placeholder="Please enter a number." name="deduction_rate" min="0.001"
+                       step="0.0001"/>
+            </div>
+            <div style="display:none;" class="small-12 medium-10 large-8 columns">
+                <label>Please enter the amount.</label>
+                <input type="number" placeholder="Please enter a number." name="deduction_amount" min="0.01"
+                       step="0.01"/>
+            </div>
+            <div style="display:none;" class="large-12 columns">
+                <input type="submit" class="button expanded large" name="add_deduction" value="Add Deduction">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    var deductionTypeSelected = function (element) {
+        var value = element.selectedOptions[0].value;
+        var deductionPercentageBlock = document.getElementsByName('deduction_percentage')[0].parentNode;
+        var deductionRateBlock = document.getElementsByName('deduction_rate')[0].parentNode;
+        var deductionAmountBlock = document.getElementsByName('deduction_amount')[0].parentNode;
+
+        if (value == 1) {
+            deductionAmountBlock.style.display = 'none';
+            deductionPercentageBlock.style.display = 'none';
+
+            deductionRateBlock.classList.add('fadeIn', 'animated');
+
+            deductionRateBlock.style.display = 'block';
+
+            deductionRateBlock.required = true
+        } else if (value == 2) {
+            deductionRateBlock.style.display = 'none';
+            deductionPercentageBlock.style.display = 'none';
+
+            deductionAmountBlock.classList.add('fadeIn', 'animated');
+
+            deductionAmountBlock.style.display = 'block';
+
+            deductionAmountBlock.required = true
+        } else if (value == 3) {
+            deductionRateBlock.style.display = 'none';
+            deductionAmountBlock.style.display = 'none';
+
+            deductionPercentageBlock.classList.add('fadeIn', 'animated');
+
+            deductionPercentageBlock.style.display = 'block';
+
+            deductionPercentageBlock.required = true
+        }
+
+        var addDeductionButton = document.getElementsByName('add_deduction')[0];
+        var addDeductionButtonBlock = addDeductionButton.parentNode;
+
+        addDeductionButtonBlock.style.display = 'block';
+        addDeductionButtonBlock.classList.add('fadeIn', 'animated');
+
+    }
+</script>
+{% endblock %}

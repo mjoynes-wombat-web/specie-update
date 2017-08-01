@@ -1,0 +1,277 @@
+$green-paper: url('../img/green_paper.jpg');
+$grey-paper: url('../img/grey_paper.jpg');
+$heading-font: 'Philosopher', sans-serif;
+$body-font: 'Roboto', sans-serif;
+$logo-svg: url('../img/Specie-Logo.svg');
+$specie-green: #1e5128;
+$kelly-green: #3a9d4c;
+$grass-green: #609d49;
+$dark-kelly-green: darken($kelly-green, 10);
+$seafoam: #4a9d88;
+$dark-seafoam: darken($seafoam, 10);
+$midnight-ocean: #365e5c;
+$dark-midnight-ocean: darken($midnight-ocean, 10);
+
+body {
+  font-family: $body-font;
+  background-image: $grey-paper;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $heading-font;
+}
+
+h2 {
+  color: $grass-green;
+  font-size: 1.4rem;
+}
+
+@media print, screen and (min-width: 40em) {
+  h2 {
+    font-size: 2.5rem;
+  }
+  p, label {
+    font-size: 1rem;
+  }
+
+  label {
+    margin: .25rem 0;
+  }
+}
+
+hr {
+  margin: .5rem auto 1.25rem auto;
+}
+
+.full-width {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: initial;
+
+  > * {
+    max-width: 75rem;
+    margin: 0 auto;
+  }
+}
+
+input[type="number"] {
+  -webkit-appearance: none;
+}
+
+header {
+  background: $green-paper;
+  text-align: center;
+
+  h1 {
+    margin: 0 auto;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 0;
+  }
+  img {
+    width: 60%;
+    min-width: 10rem;
+    min-height: 4.62rem;
+    max-width: 16rem;
+    max-height: 7.4rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  @media print, screen and (min-width: 40em) {
+    h3 {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+nav {
+  background-color: $dark-midnight-ocean;
+  border-top: 0.1rem solid #fff;
+  border-bottom: 0.1rem solid #fff;
+
+  .title-bar {
+    background-color: $midnight-ocean;
+    padding: .8rem;
+    border-top: 0.1rem solid #fff;
+    border-bottom: 0.1rem solid #fff;
+
+    .menu-icon {
+      width: 1.75rem;
+      height: 1.45rem;
+      margin: 0;
+
+      &::after {
+        height: 0.2rem;
+        background: #fff;
+        box-shadow: 0 0.6rem 0 #fff, 0 1.2rem 0 #fff;
+
+      }
+    }
+  }
+  .top-bar {
+    background-color: $dark-midnight-ocean;
+
+    ul {
+      background-color: $dark-midnight-ocean;
+
+      a {
+        color: #fff;
+
+        &:hover {
+          color: $seafoam;
+        }
+      }
+    }
+  }
+  @media print, screen and (min-width: 40em) {
+    .top-bar .top-bar-left, .top-bar .top-bar-right {
+      width: 100%;
+    }
+  }
+}
+
+main {
+  padding: 1.75rem 1rem 1.5rem 1rem;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  .large-4 h5 {
+    padding-left: 0;
+  }
+
+  h5 {
+    font-family: $body-font;
+    margin-bottom: 1rem;
+    padding: 0 1rem .5rem 1rem;
+  }
+
+  .registration {
+    background: $green-paper;
+    box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    border-radius: .4rem;
+
+    input[type="email"] {
+      max-width: 30rem;
+    }
+    input[name='user_name'] {
+      max-width: 26rem;
+    }
+    input[type="password"] {
+      max-width: 32rem;
+    }
+
+  }
+  .login {
+    padding: 0 .5rem;
+  }
+}
+
+.button {
+  background-color: $kelly-green;
+  &:hover, &:active, &:focus {
+    background-color: $dark-kelly-green;
+  }
+  &.secondary {
+    background-color: $seafoam;
+    &:hover, &:active, &:focus {
+      background-color: $dark-seafoam;
+    }
+    &.selected {
+      background-color: $midnight-ocean;
+      &:hover, &:active, &:focus {
+        background-color: $dark-midnight-ocean;
+      }
+    }
+  }
+}
+
+input:disabled {
+  &.button {
+    background-color: $seafoam;
+    opacity: .5;
+
+    &:hover, &:active, &:focus {
+      background-color: $dark-seafoam;
+    }
+  }
+}
+
+.work-hours {
+  .button {
+    input {
+      &[type='number'] {
+        margin: 1rem 0 0 0;
+        font-size: .9rem;
+      }
+    }
+  }
+}
+
+//Add Pay Form
+.add-pay {
+  select[name='pay_period'] {
+    max-width: 18rem;
+  }
+
+  input[type="number"] {
+    max-width: 14rem;
+  }
+
+  input[type="date"] {
+    max-width: 12rem;
+  }
+
+  select[name='filing_status'] {
+    max-width: 18rem;
+  }
+
+  select[name='pay_type'] {
+    max-width: 12rem;
+  }
+}
+
+//Calendar View
+.calendar {
+  > div {
+    h4{
+        color: $midnight-ocean;
+      }
+    p:nth-of-type(odd) {
+        background-color: rgba($midnight-ocean, .1)
+      }
+
+    *:last-child{
+    margin-bottom:1rem;
+  }
+  }
+
+  h4 {
+    margin: 0;
+    padding: .5rem .3rem;
+    border-bottom:1px solid rgba($dark-midnight-ocean, .4);
+    font-weight: 700;
+  }
+  p{
+      margin:0;
+      padding: 0.5rem .75rem;
+  }
+  @media print, screen and (min-width: 40em) {
+    h4 {
+      font-size: 1.4rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+
+
+
